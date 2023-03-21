@@ -1,0 +1,29 @@
+.profileDetailsContainer {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profileDetailsImage {
+    border-radius: 100%;
+}
+
+.profileDetailsFullName {
+    font-size: 3rem;
+    margin: 25px 0;
+}
+
+.profileDetailsStatsContainer {
+    display: flex;
+}
+
+.profileDetailsStatsItem {
+    flex-basis: 0;
+    flex-grow: 1;
+    font-size: 1.1rem;
+    color: rgb(191, 191, 191);
+}
+
+.profileDetailsStatsItemGreenText {
+    color: rgb(153, 230, 180);
+}
