@@ -5,8 +5,20 @@ import TopSongs from "../components/TopSongs";
 import AllPlaylists from "../components/AllPlaylists";
 
 export function getServerSideProps(context) {
-  const cookies = cookie.parse(context.req.headers.cookie);
-  const spotifyAccessToken = cookies.spotify_access_token ?? null;
+  const { code } = context.query;
+
+  if (code) {
+    context.res.setHeader('Set-Cookie', `spotify_access_token=${code}`);
+
+    return {
+      props: {
+        spotifyAccessToken: code
+      }
+    };
+  }
+
+  const { req } = context;
+  const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
 
   if (!spotifyAccessToken) {
     return {
