@@ -6,7 +6,7 @@ export default function ArtistBlock() {
         <div className={styles.ArtistBlockContainer}>
             <Image
                 src={"https://i.scdn.co/image/ab6761610000f178c7a7b191db13668f1a6d863d"}
-                alt="Track Image"
+                alt="Artist Image"
                 width={50}
                 height={50}
                 className={styles.ArtistBlockImage}

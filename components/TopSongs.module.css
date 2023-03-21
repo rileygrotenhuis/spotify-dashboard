@@ -1,14 +1,14 @@
-.TopArtistContainer {
+.TopSongContainer {
     flex-basis: 0;
     flex-grow: 1;
 }
 
-.TopArtistTitle {
+.TopSongTitle {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.TopArtistBlockContainer {
+.TopSongBlockContainer {
     display: flex;
     flex-direction: column;
     gap: 15px;

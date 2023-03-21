@@ -1,14 +1,14 @@
-.ArtistBlockContainer {
+.SongBlockContainer {
     width: fit-content;
     display: flex;
     gap: 25px;
 }
 
-.ArtistBlockImage {
-    border-radius: 100%;
+.SongBlockNameContainer {
+    margin: auto;
 }
 
-.ArtistBlockName {
+.SongBlockName {
     margin: auto;
     font-size: 1.25rem;
 }

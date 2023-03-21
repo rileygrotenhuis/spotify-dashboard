@@ -13,6 +13,8 @@ body {
 }
 
 body {
+  width: 80%;
+  margin: 0 auto;
   color: rbg(--foreground-rgb);
   background: linear-gradient(
       to bottom,
