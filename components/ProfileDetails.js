@@ -11,7 +11,7 @@ export default function ProfileDetails(props) {
                 width={175}
                 className={styles.profileDetailsImage}
             />
-            <h3 className={styles.profileDetailsFullName}>Riley Grotenhuis</h3>
+            <h3 className={styles.profileDetailsUsername}>rileygrotenhuis</h3>
             <div className={styles.profileDetailsStatsContainer}>
                 <div className={styles.profileDetailsStatsItem}>
                     <p className={styles.profileDetailsStatsItemGreenText}>14</p>

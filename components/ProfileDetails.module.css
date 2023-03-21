@@ -8,7 +8,7 @@
     border-radius: 100%;
 }
 
-.profileDetailsFullName {
+.profileDetailsUsername {
     font-size: 3rem;
     margin: 25px 0;
 }
@@ -20,7 +20,7 @@
 .profileDetailsStatsItem {
     flex-basis: 0;
     flex-grow: 1;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgb(191, 191, 191);
 }
 
