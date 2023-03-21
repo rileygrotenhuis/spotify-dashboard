@@ -2,10 +2,20 @@
     flex-grow: 1;
 }
 
+.TopArtistTextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .TopArtistTitle {
     font-size: 1.5rem;
     font-weight: bold;
-    text-align: left;
+}
+
+.TopArtistSeeMore {
+    font-size: 1rem;
+    font-weight: lighter;
 }
 
 .TopArtistBlockContainer {

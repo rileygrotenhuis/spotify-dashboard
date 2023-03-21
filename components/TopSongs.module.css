@@ -2,10 +2,20 @@
     flex-grow: 1;
 }
 
+.TopSongTextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .TopSongTitle {
     font-size: 1.5rem;
     font-weight: bold;
-    text-align: left;
+}
+
+.TopSongSeeMore {
+    font-size: 1rem;
+    font-weight: lighter;
 }
 
 .TopSongBlockContainer {
