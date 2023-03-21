@@ -1,15 +1,15 @@
-.SongBlockContainer {
+.PlaylistBlockContainer {
     width: fit-content;
     display: flex;
     gap: 25px;
 }
 
-.SongBlockNameContainer {
+.PlaylistBlockNameContainer {
     margin: auto;
     text-align: left;
 }
 
-.SongBlockName {
+.PlaylistBlockName {
     margin: auto;
     font-size: 1.25rem;
 }

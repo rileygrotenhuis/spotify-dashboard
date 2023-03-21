@@ -5,6 +5,7 @@
 .TopSongTitle {
     font-size: 1.5rem;
     font-weight: bold;
+    text-align: left;
 }
 
 .TopSongBlockContainer {

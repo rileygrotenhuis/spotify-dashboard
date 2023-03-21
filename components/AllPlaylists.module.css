@@ -1,14 +1,14 @@
-.TopArtistContainer {
+.AllPlaylistsContainer {
     flex-grow: 1;
 }
 
-.TopArtistTitle {
+.AllPlaylistsTitle {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: left;
 }
 
-.TopArtistBlockContainer {
+.AllPlaylistsBlockContainer {
     display: flex;
     flex-direction: column;
     gap: 15px;
