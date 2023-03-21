@@ -1,0 +1,15 @@
+.TopArtistContainer {
+    width: 50%
+}
+
+.TopArtistTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.TopArtistBlockContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}

@@ -1,0 +1,14 @@
+.ArtistBlockContainer {
+    width: fit-content;
+    display: flex;
+    gap: 10px;
+}
+
+.ArtistBlockImage {
+    border-radius: 100%;
+}
+
+.ArtistBlockName {
+    margin: auto;
+    font-size: 1.25rem;
+}
