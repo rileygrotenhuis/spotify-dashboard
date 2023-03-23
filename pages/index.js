@@ -17,7 +17,7 @@ async function getMeData(spotifyAccessToken) {
 };
 
 async function getPlaylistData(spotifyAccessToken) {
-  const res = await fetch('https://api.spotify.com/v1/me/playlists', {
+  const res = await fetch('https://api.spotify.com/v1/me/playlists?limit=5', {
     headers: {
       'Authorization': `Bearer ${spotifyAccessToken}`
     }
@@ -29,7 +29,7 @@ async function getPlaylistData(spotifyAccessToken) {
 };
 
 async function getTopItems(spotifyAccessToken, item) {
-  const res = await fetch(`https://api.spotify.com/v1/me/top/${item}?limit=10`, {
+  const res = await fetch(`https://api.spotify.com/v1/me/top/${item}?limit=5`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${spotifyAccessToken}`,
@@ -129,7 +129,7 @@ export default function Home(props) {
       >
         <TopSongs topSongs={props.topSongs} />
         <TopArtists topArtists={props.topArtists} />
-        <AllPlaylists />
+        <AllPlaylists playlists={props.playlists} />
       </div>
     </div>
   );

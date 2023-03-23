@@ -1,18 +1,18 @@
 import styles from './SongBlock.module.css';
 import Image from "next/image";
 
-export default function SongBlock() {
+export default function SongBlock(props) {
     return (
         <div className={styles.SongBlockContainer}>
             <Image
-                src={"https://i.scdn.co/image/ab67616d00004851bfa99afb5ef0d26d5064b23b"}
+                src={props.image_url}
                 alt="Track Image"
                 width={50}
                 height={50}
             />
             <div className={styles.SongBlockNameContainer}>
-                <p className={styles.SongBlockkName}>The Adults are Talking</p>
-                <p className={styles.SongBlockkName}>The Strokes - The New Abnormal</p>
+                <p className={styles.SongBlockName}>{props.name}</p>
+                <p className={styles.SongBlockName}> - {props.album}</p>
             </div>
         </div>
     );

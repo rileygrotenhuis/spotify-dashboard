@@ -2,7 +2,7 @@ import styles from './TopArtists.module.css';
 import Link from 'next/link';
 import ArtistBlock from "./ArtistBlock";
 
-export default function TopArtists() {
+export default function TopArtists(props) {
     return (
         <div className={styles.TopArtistContainer}>
             <div className={styles.TopArtistTextContainer}>
@@ -12,9 +12,12 @@ export default function TopArtists() {
                 </Link>
             </div>
             <div className={styles.TopArtistBlockContainer}>
-                <ArtistBlock />
-                <ArtistBlock />
-                <ArtistBlock />
+                {props.topArtists.items.map((artist) => (
+                    <ArtistBlock
+                        image_url={artist.images[2].url}
+                        name={artist.name}
+                    />
+                ))}
             </div>
         </div>
     );

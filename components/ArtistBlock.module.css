@@ -11,5 +11,9 @@
 
 .ArtistBlockName {
     margin: auto;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }
