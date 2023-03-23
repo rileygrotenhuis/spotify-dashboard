@@ -6,7 +6,7 @@ export default function TopArtists(props) {
     return (
         <div className={styles.TopArtistContainer}>
             <div className={styles.TopArtistTextContainer}>
-                <h5 className={styles.TopArtistTitle}>Top Artists of All Time</h5>
+                <h5 className={styles.TopArtistTitle}>Your Top Artists of All Time</h5>
                 <Link href='/artists'>
                     <p className={styles.TopArtistSeeMore}>See More</p>
                 </Link>

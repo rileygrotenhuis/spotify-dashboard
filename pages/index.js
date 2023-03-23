@@ -29,7 +29,7 @@ async function getPlaylistData(spotifyAccessToken) {
 };
 
 async function getTopItems(spotifyAccessToken, item) {
-  const res = await fetch(`https://api.spotify.com/v1/me/top/${item}?limit=5`, {
+  const res = await fetch(`https://api.spotify.com/v1/me/top/${item}?limit=5&time_range=long_term`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${spotifyAccessToken}`,
