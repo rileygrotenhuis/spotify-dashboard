@@ -1,22 +1,27 @@
+import * as cookie from 'cookie';
+
 export function getServerSideProps(context) {
-    const { req } = context;
-    const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
-  
-    if (!spotifyAccessToken) {
-      return {
-        redirect: {
-          destination: '/login',
-          permanent: false
-        }
-      };
-    }
-  
+  const cookies = context.req.headers.cookie ?? '';
+  const parsedCookies = cookie.parse(cookies);
+  const spotifyAccessToken = parsedCookies.spotify_access_token;
+  const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
+
+  if (!spotifyAccessToken || !spotifyRefreshToken) {
     return {
-      props: {
-        spotifyAccessToken
+      redirect: {
+        destination: '/login',
+        permanent: false
       }
     };
+  }
+
+  return {
+    props: {
+      spotifyAccessToken,
+      spotifyRefreshToken
+    }
   };
+};
 
 export default function Songs() {
     return (

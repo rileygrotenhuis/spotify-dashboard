@@ -1,15 +1,19 @@
-export function getServerSideProps(context) {
-    // const { req } = context;
-    // const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
+import * as cookie from 'cookie';
 
-    // if (spotifyAccessToken) {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: false
-    //         }
-    //     };
-    // }
+export function getServerSideProps(context) {
+    const cookies = context.req.headers.cookie ?? '';
+    const parsedCookies = cookie.parse(cookies);
+    const spotifyAccessToken = parsedCookies.spotify_access_token;
+    const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
+
+    if (spotifyAccessToken && spotifyRefreshToken) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        };
+    }
 
     const spotifyClientID = process.env.SPOTIFY_CLIENT_ID;
     const spotifyRedirectURI = process.env.SPOTIFY_REDIRECT_URI;

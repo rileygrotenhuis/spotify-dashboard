@@ -4,14 +4,11 @@ import TopArtists from "../components/TopArtists";
 import TopSongs from "../components/TopSongs";
 import AllPlaylists from "../components/AllPlaylists";
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
   const cookies = context.req.headers.cookie ?? '';
   const parsedCookies = cookie.parse(cookies);
   const spotifyAccessToken = parsedCookies.spotify_access_token;
   const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
-
-  console.log(spotifyAccessToken);
-  console.log(spotifyRefreshToken);
 
   if (spotifyAccessToken && spotifyRefreshToken) {
     return {
@@ -25,20 +22,26 @@ export function getServerSideProps(context) {
   const { code } = context.query;
 
   if (code) {
-    /**
-     * TODO:
-     * WE need to use this code to get a new
-     * refresh and access token
-     */
+    const res = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${btoa(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`)}`
+      },
+      body: `grant_type=authorization_code&code=${code}&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}`
+    });
+
+    const tokens = await res.json();
+    
     context.res.setHeader('set-cookie', [
-      `spotify_access_token=${code}; Path=/`,
-      `spotify_refresh_token=${code}; Path=/`
+      `spotify_access_token=${tokens.access_token}; Path=/`,
+      `spotify_refresh_token=${tokens.refresh_token}; Path=/`
     ]);
 
     return {
       props: {
-        spotifyAccessToken: code,
-        spotifyRefreshToken: code
+        spotifyAccessToken: tokens.access_token,
+        spotifyRefreshToken: tokens.refresh_token
       }
     };
   }
