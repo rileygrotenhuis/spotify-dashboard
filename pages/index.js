@@ -67,8 +67,8 @@ export async function getServerSideProps(context) {
       `spotify_refresh_token=${tokens.refresh_token}; Path=/`
     ]);
 
-    const me = await getMeData(spotifyAccessToken);
-    const playlists = await getPlaylistData(spotifyAccessToken);
+    const me = await getMeData(tokens.access_token);
+    const playlists = await getPlaylistData(tokens.access_token);
 
     return {
       props: {
