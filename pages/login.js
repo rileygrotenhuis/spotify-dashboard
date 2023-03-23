@@ -1,15 +1,15 @@
 export function getServerSideProps(context) {
-    const { req } = context;
-    const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
+    // const { req } = context;
+    // const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
 
-    if (spotifyAccessToken) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false
-            }
-        };
-    }
+    // if (spotifyAccessToken) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: false
+    //         }
+    //     };
+    // }
 
     const spotifyClientID = process.env.SPOTIFY_CLIENT_ID;
     const spotifyRedirectURI = process.env.SPOTIFY_REDIRECT_URI;

@@ -1,36 +1,52 @@
+import * as cookie from 'cookie';
 import ProfileDetails from "../components/ProfileDetails";
 import TopArtists from "../components/TopArtists";
 import TopSongs from "../components/TopSongs";
 import AllPlaylists from "../components/AllPlaylists";
 
 export function getServerSideProps(context) {
-  const { code } = context.query;
+  const cookies = context.req.headers.cookie ?? '';
+  const parsedCookies = cookie.parse(cookies);
+  const spotifyAccessToken = parsedCookies.spotify_access_token;
+  const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
 
-  if (code) {
-    context.res.setHeader('Set-Cookie', `spotify_access_token=${code}`);
+  console.log(spotifyAccessToken);
+  console.log(spotifyRefreshToken);
 
+  if (spotifyAccessToken && spotifyRefreshToken) {
     return {
       props: {
-        spotifyAccessToken: code
+        spotifyAccessToken,
+        spotifyRefreshToken
       }
     };
   }
 
-  const { req } = context;
-  const spotifyAccessToken = req.cookies.spotify_access_token ?? null;
+  const { code } = context.query;
 
-  if (!spotifyAccessToken) {
+  if (code) {
+    /**
+     * TODO:
+     * WE need to use this code to get a new
+     * refresh and access token
+     */
+    context.res.setHeader('set-cookie', [
+      `spotify_access_token=${code}; Path=/`,
+      `spotify_refresh_token=${code}; Path=/`
+    ]);
+
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false
+      props: {
+        spotifyAccessToken: code,
+        spotifyRefreshToken: code
       }
     };
   }
 
   return {
-    props: {
-      spotifyAccessToken
+    redirect: {
+      destination: '/login',
+      permanent: false
     }
   };
 };
