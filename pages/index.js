@@ -78,10 +78,13 @@ export async function getServerSideProps(context) {
     });
 
     const tokens = await res.json();
+
+    const now = new Date();
+    const expireTime = new Date(now.getTime() + 60 * 60 * 1000);
     
     context.res.setHeader('set-cookie', [
-      `spotify_access_token=${tokens.access_token}; Path=/`,
-      `spotify_refresh_token=${tokens.refresh_token}; Path=/`
+      `spotify_access_token=${tokens.access_token}; Expires=${expireTime.toUTCString()} Path=/`,
+      `spotify_refresh_token=${tokens.refresh_token}; Expires=${expireTime.toUTCString()} Path=/`
     ]);
 
     const me = await getMeData(tokens.access_token);
