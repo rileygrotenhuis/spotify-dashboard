@@ -12,8 +12,9 @@ export default function TopArtists(props) {
                 </Link>
             </div>
             <div className={styles.TopArtistBlockContainer}>
-                {props.topArtists.items.map((artist) => (
+                {props.topArtists.items.map((artist, index) => (
                     <ArtistBlock
+                        key={index}
                         image_url={artist.images[2].url}
                         name={artist.name}
                     />

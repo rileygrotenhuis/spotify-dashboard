@@ -6,8 +6,9 @@ export default function AllPlaylists(props) {
         <div className={styles.AllPlaylistsContainer}>
             <h5 className={styles.AllPlaylistsTitle}>Your Playlists</h5>
             <div className={styles.AllPlaylistsBlockContainer}>
-                {props.playlists.items.map((playlist) => (
+                {props.playlists.items.map((playlist, index) => (
                     <PlaylistBlock
+                        key={index}
                         image_url={playlist.images[2].url}
                         name={playlist.name}
                         total_tracks={playlist.tracks.total}
