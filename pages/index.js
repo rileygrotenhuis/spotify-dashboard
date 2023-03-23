@@ -4,6 +4,30 @@ import TopArtists from "../components/TopArtists";
 import TopSongs from "../components/TopSongs";
 import AllPlaylists from "../components/AllPlaylists";
 
+async function getMeData(spotifyAccessToken) {
+  const res = await fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      'Authorization': `Bearer ${spotifyAccessToken}`
+    }
+  });
+
+  const me = await res.json();
+
+  return me;
+};
+
+async function getPlaylistData(spotifyAccessToken) {
+  const res = await fetch('https://api.spotify.com/v1/me/playlists', {
+    headers: {
+      'Authorization': `Bearer ${spotifyAccessToken}`
+    }
+  });
+
+  const playlists = await res.json();
+
+  return playlists;
+};
+
 export async function getServerSideProps(context) {
   const cookies = context.req.headers.cookie ?? '';
   const parsedCookies = cookie.parse(cookies);
@@ -11,10 +35,15 @@ export async function getServerSideProps(context) {
   const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
 
   if (spotifyAccessToken && spotifyRefreshToken) {
+    const me = await getMeData(spotifyAccessToken);
+    const playlists = await getPlaylistData(spotifyAccessToken);
+
     return {
       props: {
         spotifyAccessToken,
-        spotifyRefreshToken
+        spotifyRefreshToken,
+        me,
+        playlists
       }
     };
   }
@@ -38,10 +67,15 @@ export async function getServerSideProps(context) {
       `spotify_refresh_token=${tokens.refresh_token}; Path=/`
     ]);
 
+    const me = await getMeData(spotifyAccessToken);
+    const playlists = await getPlaylistData(spotifyAccessToken);
+
     return {
       props: {
         spotifyAccessToken: tokens.access_token,
-        spotifyRefreshToken: tokens.refresh_token
+        spotifyRefreshToken: tokens.refresh_token,
+        me,
+        playlists
       }
     };
   }
@@ -57,7 +91,10 @@ export async function getServerSideProps(context) {
 export default function Home(props) {
   return (
     <div>
-      <ProfileDetails />
+      <ProfileDetails 
+        me={props.me}
+        playlists={props.playlists}
+      />
       <div 
         style={{
           display: 'flex',

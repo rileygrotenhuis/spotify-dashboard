@@ -1,3 +1,4 @@
+import * as cookie from 'cookie';
 import styles from './ProfileDetails.module.css';
 import Image from 'next/image';
 
@@ -5,24 +6,20 @@ export default function ProfileDetails(props) {
     return (
         <div className={styles.profileDetailsContainer}>
             <Image 
-                src={"https://i.scdn.co/image/ab6775700000ee85e3e6bd4947c267e206da3d0d"}
+                src={props.me.images[0].url}
                 alt="Profile Picture"
                 height={175}
                 width={175}
                 className={styles.profileDetailsImage}
             />
-            <h3 className={styles.profileDetailsUsername}>rileygrotenhuis</h3>
+            <h3 className={styles.profileDetailsUsername}>{props.me.display_name}</h3>
             <div className={styles.profileDetailsStatsContainer}>
                 <div className={styles.profileDetailsStatsItem}>
-                    <p className={styles.profileDetailsStatsItemGreenText}>14</p>
+                    <p className={styles.profileDetailsStatsItemGreenText}>{props.me.followers.total}</p>
                     <p>Followers</p>
                 </div>
                 <div className={styles.profileDetailsStatsItem}>
-                    <p className={styles.profileDetailsStatsItemGreenText}>0</p>
-                    <p>Following</p>
-                </div>
-                <div className={styles.profileDetailsStatsItem}>
-                    <p className={styles.profileDetailsStatsItemGreenText}>4</p>
+                    <p className={styles.profileDetailsStatsItemGreenText}>{props.playlists.total}</p>
                     <p>Playlists</p>
                 </div>
             </div>
