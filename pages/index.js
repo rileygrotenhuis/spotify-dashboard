@@ -28,6 +28,19 @@ async function getPlaylistData(spotifyAccessToken) {
   return playlists;
 };
 
+async function getTopItems(spotifyAccessToken, item) {
+  const res = await fetch(`https://api.spotify.com/v1/me/top/${item}?limit=10`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${spotifyAccessToken}`,
+    },
+  });
+
+  const top = await res.json();
+
+  return top;
+}
+
 export async function getServerSideProps(context) {
   const cookies = context.req.headers.cookie ?? '';
   const parsedCookies = cookie.parse(cookies);
@@ -37,13 +50,17 @@ export async function getServerSideProps(context) {
   if (spotifyAccessToken && spotifyRefreshToken) {
     const me = await getMeData(spotifyAccessToken);
     const playlists = await getPlaylistData(spotifyAccessToken);
+    const topSongs = await getTopItems(spotifyAccessToken, 'tracks');
+    const topArtists = await getTopItems(spotifyAccessToken, 'artists');
 
     return {
       props: {
         spotifyAccessToken,
         spotifyRefreshToken,
         me,
-        playlists
+        playlists,
+        topArtists,
+        topSongs
       }
     };
   }
@@ -69,13 +86,17 @@ export async function getServerSideProps(context) {
 
     const me = await getMeData(tokens.access_token);
     const playlists = await getPlaylistData(tokens.access_token);
+    const topSongs = await getTopItems(tokens.access_token, 'tracks');
+    const topArtists = await getTopItems(tokens.access_token, 'artists');
 
     return {
       props: {
         spotifyAccessToken: tokens.access_token,
         spotifyRefreshToken: tokens.refresh_token,
         me,
-        playlists
+        playlists,
+        topSongs,
+        topArtists
       }
     };
   }
@@ -106,8 +127,8 @@ export default function Home(props) {
           textAlign: 'center',
         }} 
       >
-        <TopSongs />
-        <TopArtists />
+        <TopSongs topSongs={props.topSongs} />
+        <TopArtists topArtists={props.topArtists} />
         <AllPlaylists />
       </div>
     </div>
