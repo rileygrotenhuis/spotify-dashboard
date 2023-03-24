@@ -25,10 +25,20 @@ export default function Login() {
     const spotifyAuthEndpoint = `https://accounts.spotify.com/authorize?client_id=${spotifyClientID}&redirect_uri=${spotifyRedirectURI}&response_type=code&scope=user-read-private%20user-library-read%20user-follow-modify%20user-top-read`;
 
     return (
-        <div>
-            <h1>Login</h1>
-            <button>
-                <a href={spotifyAuthEndpoint}>Login</a>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+        }}>
+            <button style={{
+                fontSize: '3.5rem',
+                color: 'black',
+                background: 'white',
+                padding: '25px',
+                borderRadius: '25px'
+            }}>
+                <a href={spotifyAuthEndpoint}>
+                    Login with Spotify
+                </a>
             </button>
         </div>
     );
