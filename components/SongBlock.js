@@ -12,7 +12,7 @@ export default function SongBlock(props) {
             />
             <div className={styles.SongBlockNameContainer}>
                 <p className={styles.SongBlockName}>{props.name}</p>
-                <p className={styles.SongBlockName}> - {props.album}</p>
+                <p className={styles.SongBlockName}>{props.artist} - {props.album}</p>
             </div>
         </div>
     );
