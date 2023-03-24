@@ -3,62 +3,11 @@ import ProfileDetails from '../components/ProfileDetails';
 import TopArtists from '../components/TopArtists';
 import TopSongs from '../components/TopSongs';
 import AllPlaylists from '../components/AllPlaylists';
-
-async function getMeData(spotifyAccessToken) {
-    const res = await fetch('https://api.spotify.com/v1/me', {
-        headers: {
-            Authorization: `Bearer ${spotifyAccessToken}`,
-        },
-    });
-
-    if (res.ok) {
-        const me = await res.json();
-
-        return me;
-    }
-
-    if (res.status === 401) {
-        return 401;
-    }
-
-    return null;
-}
-
-async function getPlaylistData(spotifyAccessToken) {
-    const res = await fetch('https://api.spotify.com/v1/me/playlists?limit=5', {
-        headers: {
-            Authorization: `Bearer ${spotifyAccessToken}`,
-        },
-    });
-
-    if (res.ok) {
-        const playlists = await res.json();
-
-        return playlists;
-    }
-
-    return null;
-}
-
-async function getTopItems(spotifyAccessToken, item) {
-    const res = await fetch(
-        `https://api.spotify.com/v1/me/top/${item}?limit=5&time_range=long_term`,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${spotifyAccessToken}`,
-            },
-        }
-    );
-
-    if (res.ok) {
-        const top = await res.json();
-
-        return top;
-    }
-
-    return null;
-}
+import {
+    getMeData,
+    getPlaylistData,
+    getTopItems
+} from '../libs/spotify';
 
 export async function getServerSideProps(context) {
     const cookies = context.req.headers.cookie ?? '';
