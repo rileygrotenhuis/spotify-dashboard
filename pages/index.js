@@ -128,10 +128,6 @@ export default function Home(props) {
   return (
     <div>
       {props.me ? <ProfileDetails me={props.me} playlists={props.playlists}/> : <></>}
-      <ProfileDetails 
-        me={props.me}
-        playlists={props.playlists}
-      />
       <div 
         style={{
           display: 'flex',
