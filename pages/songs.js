@@ -4,9 +4,8 @@ export function getServerSideProps(context) {
   const cookies = context.req.headers.cookie ?? '';
   const parsedCookies = cookie.parse(cookies);
   const spotifyAccessToken = parsedCookies.spotify_access_token;
-  const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
 
-  if (!spotifyAccessToken || !spotifyRefreshToken) {
+  if (!spotifyAccessToken) {
     return {
       redirect: {
         destination: '/login',
@@ -18,7 +17,6 @@ export function getServerSideProps(context) {
   return {
     props: {
       spotifyAccessToken,
-      spotifyRefreshToken
     }
   };
 };

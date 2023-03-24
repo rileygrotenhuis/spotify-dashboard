@@ -17,6 +17,10 @@ async function getMeData(spotifyAccessToken) {
     return me;
   }
 
+  if (res.status === 401) {
+    return 401;
+  }
+
   return null;
 };
 
@@ -57,10 +61,23 @@ export async function getServerSideProps(context) {
   const cookies = context.req.headers.cookie ?? '';
   const parsedCookies = cookie.parse(cookies);
   const spotifyAccessToken = parsedCookies.spotify_access_token;
-  const spotifyRefreshToken = parsedCookies.spotify_refresh_token;
 
-  if (spotifyAccessToken && spotifyRefreshToken) {
+  if (spotifyAccessToken) {
     const me = await getMeData(spotifyAccessToken);
+    
+    if (me === 401) {
+      context.res.setHeader('set-cookie', [
+        'spotify_access_token=',
+      ]);
+
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false
+        }
+      };
+    }
+
     const playlists = await getPlaylistData(spotifyAccessToken);
     const topSongs = await getTopItems(spotifyAccessToken, 'tracks');
     const topArtists = await getTopItems(spotifyAccessToken, 'artists');
@@ -68,7 +85,6 @@ export async function getServerSideProps(context) {
     return {
       props: {
         spotifyAccessToken,
-        spotifyRefreshToken,
         me,
         playlists,
         topArtists,
@@ -96,7 +112,6 @@ export async function getServerSideProps(context) {
     
     context.res.setHeader('set-cookie', [
       `spotify_access_token=${tokens.access_token}; Expires=${expireTime.toUTCString()} Path=/`,
-      `spotify_refresh_token=${tokens.refresh_token}; Expires=${expireTime.toUTCString()} Path=/`
     ]);
 
     const me = await getMeData(tokens.access_token);
@@ -107,7 +122,6 @@ export async function getServerSideProps(context) {
     return {
       props: {
         spotifyAccessToken: tokens.access_token,
-        spotifyRefreshToken: tokens.refresh_token,
         me,
         playlists,
         topSongs,
