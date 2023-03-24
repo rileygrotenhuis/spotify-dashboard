@@ -4,6 +4,7 @@ import TopArtists from '../components/TopArtists';
 import TopSongs from '../components/TopSongs';
 import AllPlaylists from '../components/AllPlaylists';
 import {
+    getSpotifyTokens,
     getMeData,
     getPlaylistData,
     getTopItems
@@ -46,18 +47,7 @@ export async function getServerSideProps(context) {
     const { code } = context.query;
 
     if (code) {
-        const res = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Authorization: `Basic ${btoa(
-                    `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-                )}`,
-            },
-            body: `grant_type=authorization_code&code=${code}&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}`,
-        });
-
-        const tokens = await res.json();
+        const tokens = await getSpotifyTokens(code);
 
         const now = new Date();
         const expireTime = new Date(now.getTime() + 60 * 60 * 1000);
