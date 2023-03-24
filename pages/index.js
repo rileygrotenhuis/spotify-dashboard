@@ -11,9 +11,13 @@ async function getMeData(spotifyAccessToken) {
     }
   });
 
-  const me = await res.json();
+  if (res.ok) {
+    const me = await res.json();
 
-  return me;
+    return me;
+  }
+
+  return null;
 };
 
 async function getPlaylistData(spotifyAccessToken) {
@@ -23,9 +27,13 @@ async function getPlaylistData(spotifyAccessToken) {
     }
   });
 
-  const playlists = await res.json();
+  if (res.ok) {
+    const playlists = await res.json();
 
-  return playlists;
+    return playlists;
+  }
+
+  return null;
 };
 
 async function getTopItems(spotifyAccessToken, item) {
@@ -36,9 +44,13 @@ async function getTopItems(spotifyAccessToken, item) {
     },
   });
 
-  const top = await res.json();
+  if (res.ok) {
+    const top = await res.json();
 
-  return top;
+    return top;
+  }
+
+  return null;
 }
 
 export async function getServerSideProps(context) {
@@ -130,9 +142,9 @@ export default function Home(props) {
           textAlign: 'center',
         }} 
       >
-        <TopSongs topSongs={props.topSongs} />
-        <TopArtists topArtists={props.topArtists} />
-        <AllPlaylists playlists={props.playlists} />
+        {props.topSongs ? <TopSongs topSongs={props.topSongs} /> : <></>}
+        {props.topArtists ? <TopArtists topArtists={props.topArtists} /> : <></>}
+        {props.playlists ? <AllPlaylists playlists={props.playlists} /> : <></>}
       </div>
     </div>
   );
