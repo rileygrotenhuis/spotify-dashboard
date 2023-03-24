@@ -1,4 +1,4 @@
-module.exports.getMeData = async(spotifyAccessToken) => {
+module.exports.getMeData = async (spotifyAccessToken) => {
     const res = await fetch('https://api.spotify.com/v1/me', {
         headers: {
             Authorization: `Bearer ${spotifyAccessToken}`,
@@ -16,9 +16,9 @@ module.exports.getMeData = async(spotifyAccessToken) => {
     }
 
     return null;
-}
+};
 
-module.exports.getPlaylistData = async(spotifyAccessToken) => {
+module.exports.getPlaylistData = async (spotifyAccessToken) => {
     const res = await fetch('https://api.spotify.com/v1/me/playlists?limit=5', {
         headers: {
             Authorization: `Bearer ${spotifyAccessToken}`,
@@ -32,7 +32,7 @@ module.exports.getPlaylistData = async(spotifyAccessToken) => {
     }
 
     return null;
-}
+};
 
 module.exports.getTopItems = async (spotifyAccessToken, item) => {
     const res = await fetch(
@@ -52,7 +52,7 @@ module.exports.getTopItems = async (spotifyAccessToken, item) => {
     }
 
     return null;
-}
+};
 
 module.exports.getSpotifyTokens = async (code) => {
     const res = await fetch('https://accounts.spotify.com/api/token', {
@@ -69,7 +69,7 @@ module.exports.getSpotifyTokens = async (code) => {
     const tokens = await res.json();
 
     return tokens;
-}
+};
 
 module.exports.logout = async (spotifyAccessToken) => {
     const res = await fetch('https://accounts.spotify.com/api/token', {

@@ -7,7 +7,7 @@ import {
     getSpotifyTokens,
     getMeData,
     getPlaylistData,
-    getTopItems
+    getTopItems,
 } from '../libs/spotify';
 import Link from 'next/link';
 
@@ -89,7 +89,13 @@ export default function Home(props) {
             ) : (
                 <></>
             )}
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '25px',
+                }}
+            >
                 <button
                     style={{
                         fontSize: '1.5rem',

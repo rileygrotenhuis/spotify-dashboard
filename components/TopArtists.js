@@ -19,6 +19,7 @@ export default function TopArtists(props) {
                         key={index}
                         image_url={artist.images[2].url}
                         name={artist.name}
+                        url={artist.external_urls.spotify}
                     />
                 ))}
             </div>

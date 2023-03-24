@@ -12,6 +12,7 @@ export default function AllPlaylists(props) {
                         image_url={playlist.images[2].url}
                         name={playlist.name}
                         total_tracks={playlist.tracks.total}
+                        url={playlist.external_urls.spotify}
                     />
                 ))}
             </div>

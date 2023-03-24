@@ -21,6 +21,7 @@ export default function TopSongs(props) {
                         name={item.name}
                         artist={item.artists[0].name}
                         album={item.album.name}
+                        url={item.external_urls.spotify}
                     />
                 ))}
             </div>
