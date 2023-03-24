@@ -1,8 +1,8 @@
-import * as cookie from 'cookie';
 import ProfileDetails from '../components/ProfileDetails';
 import TopArtists from '../components/TopArtists';
 import TopSongs from '../components/TopSongs';
 import AllPlaylists from '../components/AllPlaylists';
+import { getCookie } from '../util/cookies';
 import {
     getSpotifyTokens,
     getMeData,
@@ -11,9 +11,7 @@ import {
 } from '../libs/spotify';
 
 export async function getServerSideProps(context) {
-    const cookies = context.req.headers.cookie ?? '';
-    const parsedCookies = cookie.parse(cookies);
-    const spotifyAccessToken = parsedCookies.spotify_access_token;
+    const spotifyAccessToken = getCookie(context, 'spotify_access_token');
 
     if (spotifyAccessToken) {
         const me = await getMeData(spotifyAccessToken);

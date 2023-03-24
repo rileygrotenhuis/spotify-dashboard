@@ -1,9 +1,7 @@
-import * as cookie from 'cookie';
+import { getCookie } from '../util/cookies';
 
 export function getServerSideProps(context) {
-    const cookies = context.req.headers.cookie ?? '';
-    const parsedCookies = cookie.parse(cookies);
-    const spotifyAccessToken = parsedCookies.spotify_access_token;
+    const spotifyAccessToken = getCookie(context, 'spotify_access_token');
 
     if (spotifyAccessToken) {
         return {
