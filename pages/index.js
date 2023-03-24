@@ -9,6 +9,7 @@ import {
     getPlaylistData,
     getTopItems
 } from '../libs/spotify';
+import Link from 'next/link';
 
 export async function getServerSideProps(context) {
     const spotifyAccessToken = getCookie(context, 'spotify_access_token');
@@ -88,6 +89,19 @@ export default function Home(props) {
             ) : (
                 <></>
             )}
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
+                <button
+                    style={{
+                        fontSize: '1.5rem',
+                        color: 'black',
+                        background: 'white',
+                        padding: '15px',
+                        borderRadius: '25px',
+                    }}
+                >
+                    <Link href="/logout">Logout</Link>
+                </button>
+            </div>
             <div
                 style={{
                     display: 'flex',

@@ -70,3 +70,21 @@ module.exports.getSpotifyTokens = async (code) => {
 
     return tokens;
 }
+
+module.exports.logout = async (spotifyAccessToken) => {
+    const res = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${spotifyAccessToken}`,
+        },
+    });
+
+    if (res.ok) {
+        const response = await res.json();
+
+        return response;
+    }
+
+    return null;
+};
