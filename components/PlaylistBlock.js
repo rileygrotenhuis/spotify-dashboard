@@ -1,5 +1,5 @@
 import styles from './PlaylistBlock.module.css';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function PlaylistBlock(props) {
     return (
@@ -13,8 +13,10 @@ export default function PlaylistBlock(props) {
             />
             <div className={styles.PlaylistBlockNameContainer}>
                 <p className={styles.PlaylistBlockName}>{props.name}</p>
-                <p className={styles.PlaylistBlockName}>{props.total_tracks} Tracks</p>
+                <p className={styles.PlaylistBlockName}>
+                    {props.total_tracks} Tracks
+                </p>
             </div>
         </div>
     );
-};
+}

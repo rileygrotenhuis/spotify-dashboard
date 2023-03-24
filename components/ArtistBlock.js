@@ -1,5 +1,5 @@
 import styles from './ArtistBlock.module.css';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function ArtistBlock(props) {
     return (
@@ -14,4 +14,4 @@ export default function ArtistBlock(props) {
             <p className={styles.ArtistBlockName}>{props.name}</p>
         </div>
     );
-};
+}

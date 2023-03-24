@@ -1,5 +1,5 @@
 import styles from './AllPlaylists.module.css';
-import PlaylistBlock from "./PlaylistBlock";
+import PlaylistBlock from './PlaylistBlock';
 
 export default function AllPlaylists(props) {
     return (
@@ -17,4 +17,4 @@ export default function AllPlaylists(props) {
             </div>
         </div>
     );
-};
+}

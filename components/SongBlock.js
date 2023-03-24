@@ -1,5 +1,5 @@
 import styles from './SongBlock.module.css';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function SongBlock(props) {
     return (
@@ -16,4 +16,4 @@ export default function SongBlock(props) {
             </div>
         </div>
     );
-};
+}
