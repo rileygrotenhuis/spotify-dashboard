@@ -10,6 +10,8 @@ import {
     getTopItems,
 } from '../libs/spotify';
 import Link from 'next/link';
+import SpotifyLogo from '../components/SpotifyLogo';
+import GithubLogo from '../components/GithubLogo';
 
 export async function getServerSideProps(context) {
     const spotifyAccessToken = getCookie(context, 'spotify_access_token');
@@ -135,6 +137,8 @@ export default function Home(props) {
                     <></>
                 )}
             </div>
+            <GithubLogo />
+            <SpotifyLogo />
         </div>
     );
 }
