@@ -102,9 +102,10 @@ export default function Home(props) {
                     style={{
                         fontSize: '1.5rem',
                         color: 'black',
+                        border: '1px solid white',
                         background: 'white',
                         padding: '15px',
-                        borderRadius: '25px',
+                        borderRadius: '20px',
                     }}
                 >
                     <Link href="/logout">Logout</Link>
