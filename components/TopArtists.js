@@ -1,5 +1,4 @@
 import styles from './TopArtists.module.css';
-import Link from 'next/link';
 import ArtistBlock from './ArtistBlock';
 
 export default function TopArtists(props) {
@@ -9,9 +8,6 @@ export default function TopArtists(props) {
                 <h5 className={styles.TopArtistTitle}>
                     Your Top Artists of All Time
                 </h5>
-                <Link href="/artists">
-                    <p className={styles.TopArtistSeeMore}>See More</p>
-                </Link>
             </div>
             <div className={styles.TopArtistBlockContainer}>
                 {props.topArtists.items.map((artist, index) => (
