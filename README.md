@@ -19,12 +19,10 @@ This is a Next.js application that utilizes the public Spotify API to show stati
 
 3. Create a Spotify application on [Spotify's Developer](https://developer.spotify.com) platform and obtain a Client ID, Client Secret and Redirect URI.
 
-4. Create a `.env.local` file and add the following variables:
+4. Copy the `.env.example` file as `.env.local` then update the variables:
 
-    ```.env
-    SPOTIFY_CLIENT_ID=your_client_id
-    SPOTIFY_CLIENT_SECRET=your_client_secret
-    SPOTIFY_REDIRECT_URL=your_redirect_uri
+    ```bash
+    cp .env.example .env.local
     ```
 
 5. Start the developer server:
